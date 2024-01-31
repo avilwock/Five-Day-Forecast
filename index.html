@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Five Day Weather Forecast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link rel ="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <header class = "heading">
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <main id = "search-form">
+        <h2>Search for a City:</h2>
+        <div class = "flex-column" id = "city-search">
+            <input type = "text" id = "query" name = "q" placeholder="Search">
+            <button id = "fetch-button">Search</button>
+        </div>
+    </main>
+
+    <section id = current-forecast>
+        <h2>5 Day Forecast:</h2>
+        <p class = "card-body">Generate the five-day weather forecast for your selected location.</p>
+        <div class = "flex-column" id = "five-day"></div>
+    </section>
+    <script src = "./assets/js/script.js"></script>
+</body>
+</html>
