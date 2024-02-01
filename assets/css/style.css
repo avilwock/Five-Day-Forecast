@@ -46,3 +46,7 @@ section {
     padding: 10px;
     background-color: lightblue;
 }
+
+.fetch-button {
+    width: 100%;
+}
