@@ -23,10 +23,16 @@
             </div>
         </main>
 
-        <section id = current-forecast>
-            <h2>5 Day Forecast:</h2>
-            <p class = "card-body">Generate the five-day weather forecast for your selected location.</p>
-            <div class = "flex-column" id = "five-day"></div>
+        <section id = "current-forecast" class = "current-forecast">
+            <div id = "weather-today">
+                <h2>Today's Forecast</h2>
+                <p class="weather-body"></p>
+            </div>
+            <div class = "five-day">
+                <h2>5 Day Forecast:</h2>
+                <p class = "card-body">Generate the five-day weather forecast for your selected location.</p>
+                <div class = "flex-column" id = "five-day"></div>
+            </div>    
         </section>
     </div>
     <script src = "./assets/js/script.js"></script>
