@@ -10,23 +10,25 @@
     <link rel ="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <header class = "heading">
-        <h1>Weather Dashboard</h1>
-    </header>
+    <div class = "flex-container">
+        <header class = "heading">
+            <h1>Weather Dashboard</h1>
+        </header>
 
-    <main id = "search-form">
-        <h2>Search for a City:</h2>
-        <div class = "flex-column" id = "city-search">
-            <input type = "text" id = "query" name = "q" placeholder="Search">
-            <button id = "fetch-button">Search</button>
-        </div>
-    </main>
+        <main id = "search-form">
+            <h2>Search for a City:</h2>
+            <div class = "flex-column" id = "city-search">
+                <input type = "text" id = "query" name = "q" placeholder="Search">
+                <button id = "fetch-button">Search</button>
+            </div>
+        </main>
 
-    <section id = current-forecast>
-        <h2>5 Day Forecast:</h2>
-        <p class = "card-body">Generate the five-day weather forecast for your selected location.</p>
-        <div class = "flex-column" id = "five-day"></div>
-    </section>
+        <section id = current-forecast>
+            <h2>5 Day Forecast:</h2>
+            <p class = "card-body">Generate the five-day weather forecast for your selected location.</p>
+            <div class = "flex-column" id = "five-day"></div>
+        </section>
+    </div>
     <script src = "./assets/js/script.js"></script>
 </body>
 </html>

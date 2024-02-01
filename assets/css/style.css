@@ -1,0 +1,46 @@
+* {
+    font-family: 'Alfa Slab One', serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    display: inline-block;
+    top:0;
+    width:95%;
+    padding: 20px;
+    text-align: center;
+    border: 5px double black;
+    background-color: rgb(54, 114, 184);
+}
+
+h1 {
+    font-size: 60px;
+}
+
+h2 {
+    font-size: 15px;
+}
+.flex-container {
+    display: flex;
+}
+
+main {
+    margin-top: 200px;
+    flex: 1;
+    border: 1px;
+    padding: 20px;
+    background-color: lightgray;
+}
+
+section {
+    margin-top: 200px;
+    flex: 3;
+    border: 1px;
+    padding: 20px;
+    background-color: lightblue;
+}
