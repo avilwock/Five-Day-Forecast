@@ -1,25 +1,23 @@
-$(document).ready(function() {
-    var timeElement = document.getElementById('currentDay');
-    //This function is used to update the time
-    function updateTime() {
-    /*this creates the current day variable, and gets the current month, day, year,
-    hours, minute, and second using dayjs*/
-    var currentDate = dayjs().format("MMM DD, YYYY [at] hh:mm:ss");
-    //This updates the text content of the HTML current day element with the current date
-    timeElement.textContent = currentDate;
-    }
-    //This sets up an interval to repeat every 1 second to update the display time and date
-    setInterval(updateTime, 1000);
-})
-
-    // var cityName= document.getElementById("text").value;
+// var cityName= document.getElementById("text").value;
+document.addEventListener("DOMContentLoaded", function () {
     cityNameInput = document.getElementById("query");
     // var cityName = cityName = cityNameInput.value;
     var fetchButton = document.getElementById("fetch-button");
+    
+    var storedCityName = localStorage.getItem("cityName");
+    if (storedCityName) {
+        document.querySelector("#search-storage p").textContent = storedCityName;
+    }
 
     fetchButton.addEventListener("click", function() {
+        event.preventDefault();
         var cityName=cityNameInput.value;
-        
+
+        if (!localStorage.getItem("cityName")) {
+            localStorage.setItem("cityName", cityName);
+            document.querySelector("#search-storage p").textContent = cityName;
+        }
+
         var apiKey = "45321ce296030dae198763830cd900c8";
         var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
 
@@ -34,36 +32,27 @@ $(document).ready(function() {
             .then(function (data) {
                 var currentWeather = data.list[0];
                 var tempKelvin = currentWeather.main.temp
-                var latitude = data.city.coord.lat;
-                var longitude = data.city.coord.lon;
+                iconCode = currentWeather.weather[0].icon;
+                var iconUrl = "http://openweathermap.org/img/w/" +iconCode+ ".png";
+                
+                var currentDay = dayjs().format('MM/DD/YYYY');
 
-                console.log(latitude);
-                console.log(longitude);
-
+                document.getElementById("icon").src = iconUrl;
                 document.getElementById("current-city").textContent = data.city.name;
-                document.getElementById("current-temp").textContent = ((tempKelvin-273.15)*9/5+32).toFixed(0) + " °F";
-                document.getElementById("current-humidity").textContent = currentWeather.main.humidity + "%";
-                document.getElementById("current-wind").textContent = currentWeather.wind.speed + " m/s";
-                document.getElementById("current-UV").textContent = currentWeather.uvi;
+                document.getElementById("current-temp").textContent = "Temperature: " + ((tempKelvin-273.15)*9/5+32).toFixed(0) + " °F";
+                document.getElementById("current-humidity").textContent = "Humidity: " + currentWeather.main.humidity + "%";
+                document.getElementById("current-wind").textContent = "Wind Speed: " + currentWeather.wind.speed + " m/s";
+                
+                document.getElementById("current-day").textContent = "Current Day: " + currentDay;
                 console.log(data);
-           
-                var coordUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;          
-                return fetch(coordUrl);
-            })
-        
-        
-            .then(function(response) {
-                if (!response.ok) {
-                    throw new Error("Network response was not okay. Status Code: " + response.status);
-                }
-                return response.json();
-            })
 
-            .then(function(data) {
-                document.getElementById("currentUV").textContent = currentWeather.uvi;   
-                console.log(data);
+                localStorage.setItem('cityName', cityName);
+                // Update the text content of the <p> element
+                document.querySelector('#search-storage p').textContent = cityName;
+                });
             })
-            .catch(function(error) {
-            console.error("Fetch error:", error);
-            });
-})
+            // .catch(function(error) {
+            // console.error("Fetch error:", error);
+        // })
+
+   });
