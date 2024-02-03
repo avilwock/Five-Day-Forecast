@@ -11,22 +11,59 @@ $(document).ready(function() {
     //This sets up an interval to repeat every 1 second to update the display time and date
     setInterval(updateTime, 1000);
 })
-    
-    $(window).on("load", function() {
-    currentLocation();
-    retrieveLocalStorage();
-    });
 
-    var searchButton = document.getElementById ("fetch-button");
-    var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + q + "&appis=45321ce296030dae198763830cd900c8";
-    var q = "name";
-    
+    // var cityName= document.getElementById("text").value;
+    cityNameInput = document.getElementById("query");
+    // var cityName = cityName = cityNameInput.value;
+    var fetchButton = document.getElementById("fetch-button");
 
-    fetch(requestUrl)
-    .then(function (response) {
-    return response.json();
-    })
-    .then(function (data) {
-    console.log('Fetch Response \n-------------');
-    console.log(data);
-    });
+    fetchButton.addEventListener("click", function() {
+        var cityName=cityNameInput.value;
+        
+        var apiKey = "45321ce296030dae198763830cd900c8";
+        var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
+
+        fetch(requestUrl)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error("network response was not okay. Status Code: " +response.status);
+                }
+                console.log()
+            return response.json();
+            })
+            .then(function (data) {
+                var currentWeather = data.list[0];
+                var tempKelvin = currentWeather.main.temp
+                var latitude = data.city.coord.lat;
+                var longitude = data.city.coord.lon;
+
+                console.log(latitude);
+                console.log(longitude);
+
+                document.getElementById("current-city").textContent = data.city.name;
+                document.getElementById("current-temp").textContent = ((tempKelvin-273.15)*9/5+32).toFixed(0) + " °F";
+                document.getElementById("current-humidity").textContent = currentWeather.main.humidity + "%";
+                document.getElementById("current-wind").textContent = currentWeather.wind.speed + " m/s";
+                document.getElementById("current-UV").textContent = currentWeather.uvi;
+                console.log(data);
+           
+                var coordUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;          
+                return fetch(coordUrl);
+            })
+        
+        
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error("Network response was not okay. Status Code: " + response.status);
+                }
+                return response.json();
+            })
+
+            .then(function(data) {
+                document.getElementById("currentUV").textContent = currentWeather.uvi;   
+                console.log(data);
+            })
+            .catch(function(error) {
+            console.error("Fetch error:", error);
+            });
+})

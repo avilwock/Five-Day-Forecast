@@ -41,7 +41,7 @@ main {
 
 section {
     margin-top: 200px;
-    flex: 5;
+    flex: 4;
     border: 1px;
     padding: 10px;
     background-color: lightblue;
@@ -49,4 +49,16 @@ section {
 
 .fetch-button {
     width: 100%;
+}
+
+#weather-today {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.five-day {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
 }
