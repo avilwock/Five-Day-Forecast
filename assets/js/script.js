@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var searchStorageContainer = document.querySelector("#search-storage");
     
     var storedCityList = JSON.parse(localStorage.getItem("cityList")) || [];
-        if (storedCityList.length > 5) {
-            storedCityList = storedCityList.slice(-5);
+        if (storedCityList.length > 10) {
+            storedCityList = storedCityList.slice(-10);
     }
     //document.querySelector("#search-storage p").textContent = storedCityList.join(", ");
    function addCityButton(cityName) {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (storedCityList.indexOf(cityName) === -1) {
             storedCityList.push(cityName);
 
-            storedCityList = storedCityList.slice(-5);
+            storedCityList = storedCityList.slice(-10);
             localStorage.setItem("cityList", JSON.stringify(storedCityList));
            
         }
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("current-humidity-" + i).textContent = "Humidity: " + currentWeather.main.humidity + "%";
                 document.getElementById("current-wind-" + i).textContent = "Wind Speed: " + (currentWeather.wind.speed*2.2369).toFixed(0) + " mph";
                 
-                document.getElementById("day-" + i).textContent = "Current Day: " + currentDay;
+                document.getElementById("day-" + i).textContent =currentDay;
                 console.log(data);
             })
 
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("current-humidity-" + i).textContent = "Humidity: " + currentWeather.main.humidity + "%";
                     document.getElementById("current-wind-" + i).textContent = "Wind Speed: " + (currentWeather.wind.speed*2.2369).toFixed(0) + " mph";
                     
-                    document.getElementById("day-" + i).textContent = "Current Day: " + currentDay;
+                    document.getElementById("day-" + i).textContent = currentDay;
                     console.log(data);
                 }
                
