@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     fetchButton.addEventListener("click", function(event) {
         event.preventDefault();
-        var cityName=cityNameInput.value;
+        var cityName=cityNameInput.value.toLowerCase().replace(/(^\w|\s\w)/g, m => m.toUpperCase());;
         var storedCityList = JSON.parse(localStorage.getItem("cityList")) || [];
    
         if (storedCityList.indexOf(cityName) === -1) {

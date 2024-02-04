@@ -36,7 +36,7 @@ main {
     flex: 1;
     border: 1px;
     padding: 20px;
-    background-color: lightgray;
+    background-color: lightblue;
 }
 
 section {
@@ -50,12 +50,6 @@ section {
 .fetch-button {
     width: 100%;
 }
-/* 
-#weather-today {
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
-} */
 
 .five-day {
     border-top: 2px solid black;
@@ -69,6 +63,7 @@ section {
 .weather-card {
     text-align: center;
     padding: 10px;
+    
 }
 
 .icon {
@@ -79,3 +74,13 @@ section {
     text-align: center;
 }
 
+#search-storage button{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    width: 95%;
+    justify-content:center;
+    border-radius: 10%;
+    background-color: darkblue;
+    color: white;
+}
