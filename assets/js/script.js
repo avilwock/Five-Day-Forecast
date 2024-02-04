@@ -3,21 +3,30 @@ document.addEventListener("DOMContentLoaded", function () {
     cityNameInput = document.getElementById("query");
     // var cityName = cityName = cityNameInput.value;
     var fetchButton = document.getElementById("fetch-button");
+        
+    var searchStorageParagraph = document.querySelector("#search-storage p");
     
-    var storedCityName = localStorage.getItem("cityName");
-    if (storedCityName) {
-        document.querySelector("#search-storage p").textContent = storedCityName;
-    }
+    var storedCityList = JSON.parse(localStorage.getItem("cityList")) || [];
+   
+    
+    //document.querySelector("#search-storage p").textContent = storedCityList.join(", ");
+   
+    searchStorageParagraph.textContent = storedCityList.join(" ");
+  
 
-    fetchButton.addEventListener("click", function() {
+    fetchButton.addEventListener("click", function(event) {
         event.preventDefault();
         var cityName=cityNameInput.value;
+        var storedCityList = JSON.parse(localStorage.getItem("cityList")) || [];
+   
+        if (storedCityList.indexOf(cityName) === -1) {
+            storedCityList.push(cityName);
+            localStorage.setItem("cityList", JSON.stringify(storedCityList));
 
-        if (!localStorage.getItem("cityName")) {
-            localStorage.setItem("cityName", cityName);
-            document.querySelector("#search-storage p").textContent = cityName;
         }
 
+        
+    
         var apiKey = "45321ce296030dae198763830cd900c8";
         var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
         var currentDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" +apiKey;
@@ -34,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 cityName = data.name;
 
                 localStorage.setItem("cityName", cityName);
-                document.querySelector("#search-storage p").textContent = cityName;
+                document.querySelector("#search-storage p").textContent = storedCityList.join(", ");
                 var i = 1;
                 var currentWeather = data;
                 var tempKelvin = currentWeather.main.temp
@@ -81,19 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("day-" + i).textContent = "Current Day: " + currentDay;
                     console.log(data);
                 }
-                // var locationArray = JSON.parse(localStorage.getItem("cityList")) || [];
-                // locationArray.push (cityName)
-                // localStorage.setItem('cityList', JSON.stringify(locationArray));
-
-                // Update the text content of the <p> element
-                
-                // for (var i = 1; i < 6; i++) {
-                //     document.querySelector('#search-storage' + i).textContent = locationArray[i];
-                // }
+               
                 });
             })
-            // .catch(function(error) {
-            // console.error("Fetch error:", error);
-        // })
-
+    
    });
