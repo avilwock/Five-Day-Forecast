@@ -50,18 +50,33 @@ section {
 .fetch-button {
     width: 100%;
 }
-
+/* 
 #weather-today {
     border: 1px solid black;
     padding: 10px;
     margin: 10px;
-}
+} */
 
 .five-day {
     border: 1px solid black;
     padding: 10px;
     margin: 10px;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
+.weather-card {
+    text-align: center;
+    padding: 10px;
+    border:1px solid black;
+}
+
+.icon {
+    width: 75px;
+}
+
+#weather-1 {
+    text-align: center;
+}
 
