@@ -4,15 +4,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // var cityName = cityName = cityNameInput.value;
     var fetchButton = document.getElementById("fetch-button");
         
-    var searchStorageParagraph = document.querySelector("#search-storage");
+    var searchStorageContainer = document.querySelector("#search-storage");
     
     var storedCityList = JSON.parse(localStorage.getItem("cityList")) || [];
-   
-    
+        if (storedCityList.length > 5) {
+            storedCityList = storedCityList.slice(-5);
+    }
     //document.querySelector("#search-storage p").textContent = storedCityList.join(", ");
-   
-    searchStorageParagraph.textContent = storedCityList.join(" ");
-  
+   function updateStoredCitiesDisplay() {
+    searchStorageContainer.innerHTML = "";
+    var reversedList = storedCityList.slice().reverse();
+    reversedList.forEach(function (cityName) {
+        var cityParagraph = document.createElement("p");
+        cityParagraph.textContent = cityName;
+        searchStorageContainer.appendChild(cityParagraph);
+    });
+   }
+
+    updateStoredCitiesDisplay();
 
     fetchButton.addEventListener("click", function(event) {
         event.preventDefault();
@@ -21,11 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
    
         if (storedCityList.indexOf(cityName) === -1) {
             storedCityList.push(cityName);
+
+            storedCityList = storedCityList.slice(-5);
             localStorage.setItem("cityList", JSON.stringify(storedCityList));
-
+           
         }
-
-        
+        storedCityList.reverse();
+        updateStoredCitiesDisplay();
+       
     
         var apiKey = "45321ce296030dae198763830cd900c8";
         var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
@@ -99,5 +111,5 @@ document.addEventListener("DOMContentLoaded", function () {
                
                 });
             })
-    
+           
    });
