@@ -31,6 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(function (data) {
                 console.log (data);
+                cityName = data.name;
+
+                localStorage.setItem("cityName", cityName);
+                document.querySelector("#search-storage p").textContent = cityName;
                 var i = 1;
                 var currentWeather = data;
                 var tempKelvin = currentWeather.main.temp
