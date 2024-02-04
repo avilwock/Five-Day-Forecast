@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // var cityName = cityName = cityNameInput.value;
     var fetchButton = document.getElementById("fetch-button");
         
-    var searchStorageParagraph = document.querySelector("#search-storage p");
+    var searchStorageParagraph = document.querySelector("#search-storage");
     
     var storedCityList = JSON.parse(localStorage.getItem("cityList")) || [];
    
@@ -41,9 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(function (data) {
                 console.log (data);
                 cityName = data.name;
+            
+                var searchStorageContainer = document.querySelector("#search-storage");
+                searchStorageContainer.innerHTML = ""; // Clear existing content
+                storedCityList.forEach(function (cityName) {
+                    var cityParagraph = document.createElement("p");
+                    cityParagraph.textContent = cityName;
+                    searchStorageContainer.appendChild(cityParagraph);
+                });
 
-                localStorage.setItem("cityName", cityName);
-                document.querySelector("#search-storage p").textContent = storedCityList.join(", ");
                 var i = 1;
                 var currentWeather = data;
                 var tempKelvin = currentWeather.main.temp
@@ -56,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("current-city").textContent = data.name;
                 document.getElementById("current-temp-" + i).textContent = "Temperature: " + ((tempKelvin-273.15)*9/5+32).toFixed(0) + " °F";
                 document.getElementById("current-humidity-" + i).textContent = "Humidity: " + currentWeather.main.humidity + "%";
-                document.getElementById("current-wind-" + i).textContent = "Wind Speed: " + currentWeather.wind.speed + " m/s";
+                document.getElementById("current-wind-" + i).textContent = "Wind Speed: " + (currentWeather.wind.speed*2.2369).toFixed(0) + " mph";
                 
                 document.getElementById("day-" + i).textContent = "Current Day: " + currentDay;
                 console.log(data);
@@ -85,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.getElementById("current-city").textContent = data.city.name;
                     document.getElementById("current-temp-" + i).textContent = "Temperature: " + ((tempKelvin-273.15)*9/5+32).toFixed(0) + " °F";
                     document.getElementById("current-humidity-" + i).textContent = "Humidity: " + currentWeather.main.humidity + "%";
-                    document.getElementById("current-wind-" + i).textContent = "Wind Speed: " + currentWeather.wind.speed + " m/s";
+                    document.getElementById("current-wind-" + i).textContent = "Wind Speed: " + (currentWeather.wind.speed*2.2369).toFixed(0) + " mph";
                     
                     document.getElementById("day-" + i).textContent = "Current Day: " + currentDay;
                     console.log(data);
