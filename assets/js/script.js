@@ -96,6 +96,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log(data);
             })
 
+            .catch(function (error) {
+                console.error("Error fetching current weather:", error);
+            });
+
         fetch(requestUrl)
             .then(function(response) {
                 if (!response.ok) {
