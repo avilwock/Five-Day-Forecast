@@ -1,14 +1,18 @@
+/*This sets the font family as Alfa Slab One, serif for the entire page*/
 * {
     font-family: 'Alfa Slab One', serif;
 }
-
+/*This sets the body margin and padding to 0 for the page*/
 body {
     margin: 0;
     padding: 0;
 }
-
+/*This gives the header an absolute position at the top. The display is set to inline, and the
+header is set to the top of the page. It is given a width of 95%. The padding is 20pixels. The
+text is aligned to the center, the border is 5 pixels wide with a double ring around it, colored
+black. The background color is rgb 83, 143, 212*/
 header {
-    position: fixed;
+    position: absolute;
     display: inline-block;
     top:0;
     width:95%;
@@ -17,24 +21,26 @@ header {
     border: 5px double black;
     background-color: rgb(83, 143, 212);
 }
-
+/*The current-city text size is set to 40 pixels*/
 #current-city {
     font-size: 40px;
 }
-
+/*The h1 header is set to a font-size of 60pixels*/
 h1 {
     font-size: 60px;
 }
-
+/*The h2 headers are set to 16 pixels*/
 h2 {
     font-size: 16px;
 }
+/*The flex container is set to flex, and the width is set to 98%. The padding is 20 pixels.*/
 .flex-container {
     display: flex;
     width: 98%;
     padding: 20px;
 }
-
+/*The main element is set to start 200 pixels from the top. The flex is 1 to keep the section
+to one fifth of the section. The border is one pixel. The background is set to light blue*/
 main {
     margin-top: 200px;
     flex: 1;
@@ -42,7 +48,9 @@ main {
     padding: 20px;
     background-color: lightblue;
 }
-
+/*The section element has a margin setting it 200 pixels from the top. The flex is 4 to give 
+it four fifths of the space on the page. The border is 1 pixel. The padding is 10px. The
+background-color is set to light blue*/
 section {
     margin-top: 200px;
     flex: 4;
@@ -51,10 +59,13 @@ section {
     background-color: lightblue;
 }
 
-.fetch-button {
-    width: 100%;
+/*This makes the fetch button turn darker when hovered over*/
+#fetch-button:hover {
+    filter: brightness(80%);
 }
-
+/*The five-day class has a border at the top of 2 pixels that is solid and black. The padding
+is set to 10pixels. The margin is set to 10 pixels. The display is flex. The content is 
+justified to space around, and the items are aligned to the center.*/
 .five-day {
     border-top: 2px solid black;
     padding: 10px;
@@ -63,22 +74,25 @@ section {
     justify-content: space-around;
     align-items: center;
 }
-
+/*The items in the weather card have text aligned to the center, padding set to 10 pxiels
+and the font set to 15 pixels.*/
 .weather-card {
     text-align: center;
     padding: 10px;
     font-size: 15px;
     
 }
-
+/*This gives the icon a width of 75 pixels*/
 .icon {
     width: 75px;
 }
-
+/*This aligns the weather-1 section for the current day and time forecast, to the center*/
 #weather-1 {
     text-align: center;
 }
-
+/*This sets the search storage buttons to have margins of 10 pixels, padding of 10 pixels
+a flex display, a width of 95% of the box, the content is justified to the center, the border
+radius is 10%. The background color is rgb (8, 90, 90), and the font is set to white*/
 #search-storage button{
     margin: 10px;
     padding: 10px;
@@ -89,7 +103,7 @@ section {
     background-color: rgb(8, 90, 90);
     color: white;
 }
-
+/*This sets the search storage button to turn darker when hovered over*/
 #search-storage button:hover {
-    background-color: darkblue;
+    filter: brightness(80%);
 }
