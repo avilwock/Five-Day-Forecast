@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (!response.ok) {
                     throw new Error("network response was not okay. Status Code: " +response.status);
                 }
-                console.log()
             //if okay, it converts the response to json
             return response.json();
             })
