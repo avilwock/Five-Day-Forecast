@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //This declares the apiKey which is uniquely assigned
         var apiKey = "45321ce296030dae198763830cd900c8";
         //This creates the url for the api to retrieve city Name and apiKey
-        var requestUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
+        var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
         //This creates the url for the api to retrieve the current day information
         var currentDayUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" +apiKey;
         //This starts the request fo rthe currentDayUrl, checks for an error 
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 var currentWeather = data;
                 var tempKelvin = currentWeather.main.temp
                 iconCode = currentWeather.weather[0].icon;
-                var iconUrl = "http://openweathermap.org/img/w/" +iconCode+ ".png";
+                var iconUrl = "https://openweathermap.org/img/w/" +iconCode+ ".png";
                 //This uses dayJs to format the time response                                    
                 var currentDay = dayjs(currentWeather.dt*1000).format('MM/DD/YYYY dddd');
                 //these lines update the icon, current city, temp, humidity, and wind
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     var currentWeather = data.list[num];
                     var tempKelvin = currentWeather.main.temp
                     iconCode = currentWeather.weather[0].icon;
-                    var iconUrl = "http://openweathermap.org/img/w/" +iconCode+ ".png";
+                    var iconUrl = "https://openweathermap.org/img/w/" +iconCode+ ".png";
                                         
                     var currentDay = dayjs(currentWeather.dt*1000).format('MM/DD/YYYY dddd');
 
